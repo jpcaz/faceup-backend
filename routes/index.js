@@ -10,7 +10,7 @@ router.post("/upload", async (req, res) => {
   // console.log('photofromfront:',req.files.photoFromFront)
   //const resultMove = await req.files.photoFromFront.mv(photoPath);
   // if (!resultMove) {
-    console.log("res move", resultMove)
+    // console.log("res move", resultMove)
     const resultCloudinary = await cloudinary.uploader.upload(req.files.photoFromFront.uri);
     console.log("resultCloudinary",resultCloudinary)
     fs.unlinkSync(photoPath);
