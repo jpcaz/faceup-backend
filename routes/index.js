@@ -7,8 +7,10 @@ const fs = require("fs");
 router.post("/upload", async (req, res) => {
     console.log("in /upload route")
   const photoPath = `./tmp/${uniqid()}.jpg`;
+  console.log('photofromfront:',req.files.photoFromFront)
   const resultMove = await req.files.photoFromFront.mv(photoPath);
   if (!resultMove) {
+
     const resultCloudinary = await cloudinary.uploader.upload(photoPath);
     fs.unlinkSync(photoPath);
     res.json({ result: true, url: resultCloudinary.secure_url });
